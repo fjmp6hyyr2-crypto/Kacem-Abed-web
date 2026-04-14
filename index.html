@@ -1,126 +1,174 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Site Interactif</title>
+    <title>My Fashion Brand</title>
     <style>
-        /* 1. STYLE GÉNÉRAL DU SITE */
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+        /* إعدادات عامة لتنظيف الخطوط والمسافات */
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* تصميم القائمة العلوية */
+        header {
+            background-color: #ffffff;
+            padding: 20px 50px;
             display: flex;
+            justify-content: space-between;
             align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            background-color: #eef2f3;
+            border-bottom: 1px solid #eeeeee;
         }
 
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            max-width: 500px;
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #004526; /* لون أخضر داكن قريب من ستايل لاكوست */
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        h1 { color: #333; }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: #0070f3;
-            color: white;
+        nav a {
             text-decoration: none;
-            border-radius: 30px;
+            color: #333;
+            margin-left: 20px;
             font-weight: bold;
-            transition: transform 0.2s, background 0.3s;
-            cursor: pointer;
-            border: none;
+            text-transform: uppercase;
+            font-size: 14px;
         }
 
-        .btn:hover {
-            background-color: #0051b3;
-            transform: scale(1.05);
+        nav a:hover {
+            color: #004526;
         }
 
-        /* 2. STYLE DE L'IMAGE PLEIN ÉCRAN (L'OVERLAY) */
-        .overlay {
-            display: none; /* Caché par défaut */
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95); /* Fond noir très sombre */
-            z-index: 9999; /* Toujours au premier plan */
+        /* تصميم الصورة الكبيرة (البانر) */
+        .hero {
+            background-color: #f4f4f4;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            text-align: center;
         }
 
-        .overlay-img {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(255,255,255,0.2);
-            border: 4px solid white;
+        .hero h1 {
+            font-size: 40px;
+            color: #333;
+            margin-bottom: 15px;
         }
 
-        .close-btn {
-            position: absolute;
-            top: 30px;
-            right: 40px;
+        .hero button {
+            padding: 12px 30px;
+            background-color: #004526;
             color: white;
-            font-size: 50px;
-            font-weight: bold;
+            border: none;
+            font-size: 16px;
             cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .hero button:hover {
+            background-color: #00331c;
+        }
+
+        /* تصميم قسم المنتجات */
+        .products-section {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .products-section h2 {
+            margin-bottom: 40px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .product-grid {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .product-card {
+            width: 30%;
+            border: 1px solid #eee;
+            padding: 20px;
             transition: 0.3s;
         }
 
-        .close-btn:hover {
-            color: #ff4d4d;
+        .product-card:hover {
+            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            background-color: #f9f9f9;
+            height: 250px;
+            margin-bottom: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #aaa;
+        }
+
+        .product-title {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .product-price {
+            color: #004526;
+            font-weight: bold;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Projet GitHub & Vercel</h1>
-        <p>Clique sur le bouton pour voir l'effet "Plein Écran".</p>
-        <button class="btn" id="monBouton">En savoir plus</button>
-    </div>
+    <header>
+        <div class="logo">MyBrand</div>
+        <nav>
+            <a href="#">New In</a>
+            <a href="#">Clothing</a>
+            <a href="#">Footwear</a>
+            <a href="#">Accessories</a>
+        </nav>
+    </header>
 
-    <div id="imageOverlay" class="overlay">
-        <span class="close-btn" onclick="fermerImage()">&times;</span>
-        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000" alt="Espace" class="overlay-img">
-        <p style="color: white; margin-top: 20px;">Appuie sur le X pour fermer</p>
-    </div>
+    <section class="hero">
+        <h1>Spring / Summer 2026 Collection</h1>
+        <p style="margin-bottom: 20px;">Discover the new elegance.</p>
+        <button>Shop Now</button>
+    </section>
 
-    <script>
-        // 3. LOGIQUE JAVASCRIPT
-        const bouton = document.getElementById('monBouton');
-        const overlay = document.getElementById('imageOverlay');
-
-        // Ouvrir l'image au clic
-        bouton.onclick = function() {
-            overlay.style.display = 'flex';
-        };
-
-        // Fermer l'image
-        function fermerImage() {
-            overlay.style.display = 'none';
-        }
-
-        // Optionnel : Fermer aussi en appuyant sur la touche "Echap"
-        window.onkeydown = function(event) {
-            if (event.key === "Escape") {
-                fermerImage();
-            }
-        };
-    </script>
+    <section class="products-section">
+        <h2>Trending Now</h2>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">Image: Classic Polo</div>
+                <div class="product-title">Classic Cotton Polo</div>
+                <div class="product-price">120 €</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image: Tracksuit</div>
+                <div class="product-title">Sport Edition Tracksuit</div>
+                <div class="product-price">250 €</div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">Image: Slides</div>
+                <div class="product-title">Summer Slides</div>
+                <div class="product-price">60 €</div>
+            </div>
+        </div>
+    </section>
 
 </body>
 </html>
+
+        
+            
+            
