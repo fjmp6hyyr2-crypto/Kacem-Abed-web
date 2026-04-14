@@ -3,143 +3,149 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Fashion Brand</title>
+    <title>Brand Collection - New Arrivals</title>
     <style>
-        /* إعدادات عامة لتنظيف الخطوط والمسافات */
+        /* إعدادات عامة لتنظيف الأنماط الافتراضية للخطوط والهوامش */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
         }
 
-        /* تصميم القائمة العلوية */
+        /* تنسيق قائمة التنقل */
         header {
-            background-color: #ffffff;
+            background-color: #fff;
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #eeeeee;
+            border-bottom: 1px solid #eee;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
         }
 
-        .logo {
+        header h1 {
             font-size: 24px;
-            font-weight: bold;
-            color: #004526;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            font-weight: 700;
+            color: #333;
+            letter-spacing: 1px;
         }
 
         nav a {
             text-decoration: none;
             color: #333;
             margin-left: 20px;
-            font-weight: bold;
+            font-weight: 600;
             text-transform: uppercase;
             font-size: 14px;
         }
 
         nav a:hover {
-            color: #004526;
+            color: #cc0000; /* لون أحمر لتأثير المرور */
         }
 
-        /* تصميم الصورة الكبيرة (البانر) */
-        .hero {
-            background-color: #f4f4f4;
-            height: 400px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            /* أضفنا صورة خلفية للبانر الرئيسي */
-            background-image: url('https://placehold.co/1200x400/eeeeee/333333?text=Spring+Collection+2026');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero h1 {
-            font-size: 40px;
-            color: #111;
-            margin-bottom: 15px;
-            background-color: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px;
-        }
-
-        .hero button {
-            padding: 12px 30px;
-            background-color: #004526;
-            color: white;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            text-transform: uppercase;
-            margin-top: 15px;
-        }
-
-        .hero button:hover {
-            background-color: #00331c;
-        }
-
-        /* تصميم قسم المنتجات */
-        .products-section {
+        /* تنسيق قسم المنتجات الرئيسي */
+        .product-section {
+            margin-top: 100px; /* لإعطاء مساحة تحت قائمة التنقل الثابتة */
             padding: 50px;
-            text-align: center;
+            background-color: #f9f9f9;
         }
 
-        .products-section h2 {
-            margin-bottom: 40px;
+        .product-section h2 {
+            text-align: center;
+            margin-bottom: 50px;
             font-size: 28px;
             color: #333;
         }
 
+        /* تنسيق شبكة المنتجات */
         .product-grid {
             display: flex;
             justify-content: center;
             gap: 30px;
-            flex-wrap: wrap; /* للسماح بنزول المنتجات لسطر جديد */
+            flex-wrap: wrap; /* لجعل المنتجات تتجاوب مع الشاشات الصغيرة */
         }
 
+        /* تنسيق بطاقة المنتج الفردية */
         .product-card {
-            width: 30%;
-            min-width: 250px; /* لضمان عدم صغر البطاقة جداً في الشاشات الصغيرة */
-            border: 1px solid #eee;
-            padding: 20px;
-            transition: 0.3s;
-            margin-bottom: 20px;
+            background-color: #fff;
+            width: 30%; /* عرض ثلاث منتجات في الصف */
+            min-width: 250px; /* لمنع البطاقات من أن تصبح صغيرة جدًا */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .product-card:hover {
-            box-shadow: 0px 5px 15px rgba(0,0,0,0.1);
+            transform: translateY(-5px); /* تأثير الارتفاع عند المرور */
+            box-shadow: 0 8px 12px rgba(0,0,0,0.15);
         }
 
-        /* تحديث تصميم الصورة لتأخذ حجم البطاقة بشكل احترافي */
+        /* تنسيق صورة المنتج */
         .product-image {
             width: 100%;
-            height: 250px;
-            object-fit: cover; /* يمنع تمطط الصورة أو تشوهها */
-            margin-bottom: 15px;
-            border-radius: 4px;
+            height: 300px; /* ارتفاع ثابت لتوحيد البطاقات */
+            object-fit: contain; /* للحفاظ على نسبة الصورة دون تشويه */
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* تنسيق تفاصيل المنتج */
+        .product-details {
+            padding: 20px;
+            text-align: center;
         }
 
         .product-title {
             font-size: 18px;
-            margin-bottom: 10px;
+            font-weight: 600;
             color: #333;
+            margin-bottom: 10px;
         }
 
         .product-price {
-            color: #004526;
-            font-weight: bold;
             font-size: 16px;
+            color: #555;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+
+        /* تنسيق زر الإضافة إلى السلة */
+        .add-to-cart-btn {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #cc0000;
+        }
+
+        /* تنسيق التذيل */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            font-size: 14px;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="logo">MyBrand</div>
+        <h1>My Brand</h1>
         <nav>
             <a href="#">New In</a>
             <a href="#">Clothing</a>
@@ -148,38 +154,44 @@
         </nav>
     </header>
 
-    <section class="hero">
-        <h1>Spring / Summer 2026 Collection</h1>
-        <button>Shop Now</button>
-    </section>
-
-    <section class="products-section">
-        <h2>Trending Now</h2>
+    <main class="product-section">
+        <h2>Our Curated Picks</h2>
+        
         <div class="product-grid">
             
             <div class="product-card">
-                <img src="https://placehold.co/400x400/f9f9f9/004526?text=Moncler+Tracksuit" alt="Moncler Tracksuit" class="product-image">
-                <div class="product-title">Moncler Sport Tracksuit</div>
-                <div class="product-price">850 €</div>
+                <img src="image_0.png" alt="Moncler Signature Stripe Tracksuit" class="product-image">
+                <div class="product-details">
+                    <h3 class="product-title">Moncler Stripe Tracksuit Set</h3>
+                    <p class="product-price">€1,350</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
 
             <div class="product-card">
-                <img src="https://placehold.co/400x400/f9f9f9/004526?text=Hugo+Boss+Polo" alt="Hugo Boss Polo" class="product-image">
-                <div class="product-title">Hugo Boss Classic Polo</div>
-                <div class="product-price">120 €</div>
+                <img src="image_1.png" alt="Brunello Cucinelli Suede Sandals" class="product-image">
+                <div class="product-details">
+                    <h3 class="product-title">Brunello Cucinelli Suede Sandals</h3>
+                    <p class="product-price">€890</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
 
             <div class="product-card">
-                <img src="https://placehold.co/400x400/f9f9f9/004526?text=Brunello+Cucinelli+Slides" alt="Brunello Cucinelli Slides" class="product-image">
-                <div class="product-title">Brunello Cucinelli Slides</div>
-                <div class="product-price">350 €</div>
+                <img src="image_2.png" alt="Boss Black Logo Polo Shirt" class="product-image">
+                <div class="product-details">
+                    <h3 class="product-title">Boss Black Logo Polo</h3>
+                    <p class="product-price">€160</p>
+                    <button class="add-to-cart-btn">Add to Cart</button>
+                </div>
             </div>
 
         </div>
-    </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 My Brand. All Rights Reserved.</p>
+    </footer>
 
 </body>
 </html>
-
-            
-            
