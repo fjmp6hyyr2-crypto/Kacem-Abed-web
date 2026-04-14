@@ -3,52 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Nouveau Site</title>
+    <title>Mon Site Interactif</title>
     <style>
-        /* Design rapide et moderne */
+        /* 1. STYLE GÉNÉRAL DU SITE */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
-            background-color: #f4f4f9;
-            color: #333;
+            background-color: #eef2f3;
         }
+
         .container {
             text-align: center;
             background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 400px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 500px;
         }
-        h1 { color: #0070f3; }
-        p { line-height: 1.6; }
+
+        h1 { color: #333; }
+
         .btn {
             display: inline-block;
             margin-top: 20px;
-            padding: 10px 20px;
+            padding: 12px 25px;
             background-color: #0070f3;
             color: white;
             text-decoration: none;
-            border-radius: 5px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: transform 0.2s, background 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: #0051b3;
+            transform: scale(1.05);
+        }
+
+        /* 2. STYLE DE L'IMAGE PLEIN ÉCRAN (L'OVERLAY) */
+        .overlay {
+            display: none; /* Caché par défaut */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95); /* Fond noir très sombre */
+            z-index: 9999; /* Toujours au premier plan */
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .overlay-img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255,255,255,0.2);
+            border: 4px solid white;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: white;
+            font-size: 50px;
+            font-weight: bold;
+            cursor: pointer;
             transition: 0.3s;
         }
-        .btn:hover { background-color: #0051b3; }
+
+        .close-btn:hover {
+            color: #ff4d4d;
+        }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>صحا حدي صحا واش خاصك حبيبي !</h1>
-        <p>Ceci est un site web propulsé par <strong>GitHub</strong> et hébergé sur <strong>Vercel</strong>.</p>
-        <p>Le développement commence ici.</p>
-        <a href="#" class="btn">En savoir plus</a>
+        <h1>Projet GitHub & Vercel</h1>
+        <p>Clique sur le bouton pour voir l'effet "Plein Écran".</p>
+        <button class="btn" id="monBouton">En savoir plus</button>
     </div>
+
+    <div id="imageOverlay" class="overlay">
+        <span class="close-btn" onclick="fermerImage()">&times;</span>
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000" alt="Espace" class="overlay-img">
+        <p style="color: white; margin-top: 20px;">Appuie sur le X pour fermer</p>
+    </div>
+
+    <script>
+        // 3. LOGIQUE JAVASCRIPT
+        const bouton = document.getElementById('monBouton');
+        const overlay = document.getElementById('imageOverlay');
+
+        // Ouvrir l'image au clic
+        bouton.onclick = function() {
+            overlay.style.display = 'flex';
+        };
+
+        // Fermer l'image
+        function fermerImage() {
+            overlay.style.display = 'none';
+        }
+
+        // Optionnel : Fermer aussi en appuyant sur la touche "Echap"
+        window.onkeydown = function(event) {
+            if (event.key === "Escape") {
+                fermerImage();
+            }
+        };
+    </script>
 
 </body>
 </html>
-
